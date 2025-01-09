@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://brok7dflvq07r"]
+
+[ext_resource type="Script" path="res://TPS/TPS.gd" id="1_abtra"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1itdt"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8j2u1"]
+sky_material = SubResource("ProceduralSkyMaterial_1itdt")
+
+[sub_resource type="Environment" id="Environment_n0abw"]
+background_mode = 2
+sky = SubResource("Sky_8j2u1")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1scc0"]
+albedo_color = Color(0.12549, 0.207843, 0.0235294, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3n771"]
+material = SubResource("StandardMaterial3D_1scc0")
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_it4un"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5vjdu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_emrkq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x6edt"]
+
+[node name="TPS" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n0abw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3n771")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_it4un")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26583, 0)
+script = ExtResource("1_abtra")
+
+[node name="Head" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.696708, 0, -0.5, 1.20673, 0, 1.24785, -0.143559)
+mesh = SubResource("SphereMesh_5vjdu")
+
+[node name="Body" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_emrkq")
+
+[node name="OriginCam" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/OriginCam"]
+spring_length = 1.5
+
+[node name="Camera3D" type="Camera3D" parent="Player/OriginCam/SpringArm3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_x6edt")
