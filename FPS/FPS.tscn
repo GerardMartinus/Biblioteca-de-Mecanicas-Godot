@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwm4lmw425gmc"]
+
+[ext_resource type="Script" path="res://FPS/PlayerFPS.gd" id="1_57aok"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_phlxv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_38u74"]
+sky_material = SubResource("ProceduralSkyMaterial_phlxv")
+
+[sub_resource type="Environment" id="Environment_jkaau"]
+background_mode = 2
+sky = SubResource("Sky_38u74")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxm4j"]
+albedo_color = Color(0.192157, 0.341176, 0.137255, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r6mbd"]
+material = SubResource("StandardMaterial3D_pxm4j")
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gedka"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2jwg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hn1ef"]
+
+[node name="Fps" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jkaau")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_r6mbd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_gedka")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_57aok")
+
+[node name="Collision" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_b2jwg")
+
+[node name="PlayerModel" type="MeshInstance3D" parent="Player"]
+visible = false
+mesh = SubResource("CapsuleMesh_hn1ef")
+
+[node name="Head" type="Node3D" parent="Player"]
+
+[node name="Vertical" type="Node3D" parent="Player/Head"]
+
+[node name="Camera" type="Camera3D" parent="Player/Head/Vertical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

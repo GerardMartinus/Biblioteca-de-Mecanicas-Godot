@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-@onready var pivot = $OriginCam
 
 @export_category("Character Settings")
 @export var SPEED = 5.0
@@ -13,6 +12,7 @@ extends CharacterBody3D
 
 # Para manter a posição onde esta olhando quando aperta o ESC 
 @onready var mouse_on = true
+@onready var head_vertical = $Head/Vertical
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -21,12 +21,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-# Mouse Movement Camera
 func _input(event):
 	if event is InputEventMouseMotion and mouse_on:
 		rotate_y(deg_to_rad(-event.relative.x * sens))
-		pivot.rotate_x(deg_to_rad(-event.relative.y * sens))
-		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-60), deg_to_rad(35))
+		head_vertical.rotate_x(deg_to_rad(-event.relative.y * sens))
+		head_vertical.rotation.x = clamp(head_vertical.rotation.x, deg_to_rad(-60), deg_to_rad(35))
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -37,11 +36,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("player_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-		# Handle jump.
-	if Input.is_action_just_pressed("player_jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	# Mouse Input Camera
+		# Mouse Input Camera
 	if Input.is_action_just_pressed("player_exit"):
 		mouse_on = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -49,7 +44,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("mouse_left"):
 		mouse_on = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
+	
 	if Input.is_action_pressed("player_run"):
 		SPEED = RUNNING_SPEED
 	else:
