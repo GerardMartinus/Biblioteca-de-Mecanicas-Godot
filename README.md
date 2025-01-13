@@ -8,8 +8,6 @@ O principal objetivo deste repositório é servir como uma coleção de mecânic
 
 ## Mecânicas Disponíveis
 
-*(Deixe este espaço para listar as mecânicas disponíveis. Por exemplo:)*
-
 - Mecânica de Movimentação de Personagens
 - Sistema de Inventário
 - Animação de Transição de Cena
