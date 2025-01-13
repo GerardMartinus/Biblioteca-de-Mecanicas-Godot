@@ -28,10 +28,6 @@ O principal objetivo deste repositório é servir como uma coleção de mecânic
 2. Importe as mecânicas que deseja utilizar para o seu projeto Godot.
 3. Siga as instruções específicas de cada mecânica para configurá-la e integrá-la ao seu jogo.
 
-## Contribuições
-
-Contribuições são bem-vindas! Se você tem uma mecânica interessante que gostaria de compartilhar com a comunidade, sinta-se à vontade para abrir um Pull Request. Antes de contribuir, por favor, leia as diretrizes de contribuição no arquivo `CONTRIBUTING.md`.
-
 ## Licença
 
 Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
