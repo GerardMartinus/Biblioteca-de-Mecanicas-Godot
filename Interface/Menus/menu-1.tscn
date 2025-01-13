@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://lfpmys6telcg"]
 
-[ext_resource type="Script" path="res://Menus/menu-1.gd" id="1_st0gv"]
+[ext_resource type="Script" path="res://Interface/Menus/menu-1.gd" id="1_st0gv"]
 
 [sub_resource type="Gradient" id="Gradient_krlvm"]
 colors = PackedColorArray(0.045913, 7.21961e-08, 0.345528, 1, 0.141176, 0.141176, 1, 1)

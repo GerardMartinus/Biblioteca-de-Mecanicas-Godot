@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://brok7dflvq07r"]
 
-[ext_resource type="Script" path="res://TPS/TPS.gd" id="1_abtra"]
+[ext_resource type="Script" path="res://3D/TPS/TPS.gd" id="1_abtra"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1itdt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
