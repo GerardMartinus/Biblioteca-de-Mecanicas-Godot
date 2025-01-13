@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqph05hlbuush"]
+
+[ext_resource type="Script" path="res://2D/Platform/PlayerPlatform.gd" id="1_8aecf"]
+[ext_resource type="Texture2D" uid="uid://1n46mbi5b163" path="res://icon.svg" id="2_pvhey"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_yne8l"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsdui"]
+size = Vector2(134, 126)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4d84n"]
+size = Vector2(1200, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igsy7"]
+size = Vector2(1196, 100)
+
+[node name="Plataform" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(565, 470)
+script = ExtResource("1_8aecf")
+
+[node name="PlayerShape" type="MeshInstance2D" parent="Player"]
+rotation = 3.14159
+scale = Vector2(2.56, 2.56)
+mesh = SubResource("QuadMesh_yne8l")
+texture = ExtResource("2_pvhey")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_wsdui")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Ground" type="MeshInstance2D" parent="StaticBody2D"]
+position = Vector2(565, 606)
+mesh = SubResource("QuadMesh_4d84n")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(565, 606)
+shape = SubResource("RectangleShape2D_igsy7")
