@@ -1,0 +1,159 @@
+[gd_scene load_steps=6 format=3 uid="uid://lfpmys6telcg"]
+
+[ext_resource type="Script" path="res://Menus/menu-1.gd" id="1_st0gv"]
+
+[sub_resource type="Gradient" id="Gradient_krlvm"]
+colors = PackedColorArray(0.045913, 7.21961e-08, 0.345528, 1, 0.141176, 0.141176, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bqnoj"]
+gradient = SubResource("Gradient_krlvm")
+
+[sub_resource type="ImageTexture" id="ImageTexture_ge1ki"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjtyv"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_st0gv")
+
+[node name="Backgrounds" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="Backgrounds"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ImageBackground" type="TextureRect" parent="Backgrounds"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_bqnoj")
+
+[node name="LeftContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 86.0
+offset_right = 595.0
+offset_bottom = 416.0
+theme_override_constants/separation = 50
+
+[node name="LogoContainer" type="HBoxContainer" parent="LeftContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LeftContainer/LogoContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("ImageTexture_ge1ki")
+
+[node name="GameLogo" type="Label" parent="LeftContainer/LogoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.976471, 0.976471, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 74
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjtyv")
+text = "Game Name"
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="LeftContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="LeftContainer/ButtonsContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Play"
+flat = true
+alignment = 0
+
+[node name="Settings" type="Button" parent="LeftContainer/ButtonsContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Settings"
+flat = true
+alignment = 0
+
+[node name="Credits" type="Button" parent="LeftContainer/ButtonsContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Credits"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="LeftContainer/ButtonsContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Exit"
+flat = true
+alignment = 0
+
+[node name="ButtonsSettingsContainer" type="VBoxContainer" parent="LeftContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Test" type="Button" parent="LeftContainer/ButtonsSettingsContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Test"
+flat = true
+alignment = 0
+
+[node name="Back" type="Button" parent="LeftContainer/ButtonsSettingsContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Back"
+flat = true
+alignment = 0
+
+[node name="Credits" type="VBoxContainer" parent="LeftContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LeftContainer/Credits"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Gerard Martinus - Developer"
+
+[node name="Back" type="Button" parent="LeftContainer/Credits"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 42
+text = "Back"
+flat = true
+alignment = 0
